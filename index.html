@@ -4,28 +4,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>whmall数据库word文档转换为mysql ddl脚本</title>
+  <title>Whmall数据库文档转Mysql建表语句</title>
   <link rel="stylesheet" href="css/semantic.min.css">
+  <link rel="stylesheet" href="css/prism.css">
   <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/semantic.min.js"></script>
+  <script src="scripts/prism.js"></script>
 </head>
 
 <body>
-  <div class="ui container" >
+  <div class="ui container">
     <br>
-    <!-- <h1 class="ui dividing header">浪桑数据库文档转Mysql建表DDL</h1> -->
-    <h1 class="ui dividing header">xxx</h1>
+    <h1 class="ui dividing header">whmall数据库文档转Mysql建表语句</h1>
+    <div class="ui mini message hidden" id="message"></div>
     <div class="ui two column grid">
       <div class="column">
-        <div class="ui form" >
+        <div class="ui form">
           <div class="field">
-            <label>Doc</label>
-            <textarea style="max-height: none;height:600px" id="docTextArea"></textarea>
+            <div class="ui left labeled button" tabindex="0" style="margin-bottom:10px;">
+              <a class="ui basic right pointing label">
+                文档内容
+              </a>
+              <div class="ui PRIMARY blue button" id="docConvertButton">
+                转换
+              </div>
+            </div>
+            <textarea id="docTextArea" style="max-height: none;resize: none;overflow-y: hidden;height:400px;"></textarea>
           </div>
-          <div class="ui submit blue button" id="docConvertButton">Doc转换</div>
         </div>
       </div>
       <div class="column">
-        asd
+        <div class="ui form">
+          <div class="field">
+            <div class="ui left labeled button" tabindex="0" style="margin-bottom:3px;">
+              <a class="ui basic right pointing label">
+                转换结果
+              </a>
+              <div class="ui PRIMARY blue button" id="copyResultButton">
+                复制
+              </div>
+            </div>
+            <pre>
+              <code class="language-sql" id="sql_code"></code>
+            </pre>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

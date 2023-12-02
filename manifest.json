@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Whmall doc to sql",
+  "name": "Whmall Doc To Sql",
   "version": "1.0",
   "description": "whmall数据库word文档转换为mysql ddl脚本",
   "icons": {
