@@ -41,6 +41,17 @@ $('#docConvertButton').on('click', function() {
       data_type = data_type?.trim();
       default_value = default_value?.trim();
       other = other?.trim();
+      let isAutoIncrement = false;
+      if (default_value?.includes("AUTO_INCREMENT")) {
+        isAutoIncrement = true;
+        default_value = null;
+      } else if (data_type?.includes("text")) {
+        default_value = null;
+      } else if (data_type?.includes("int") || data_type?.includes("decimal")) {
+        default_value = default_value.replaceAll("零值", "0");
+      } else if (data_type?.includes("char")) {
+        default_value = default_value.replaceAll("零值", "");
+      }
       if (data_type.startsWith("unsigned")) {
         data_type = data_type.split(" ").reverse().join(" ");
       }
@@ -51,11 +62,11 @@ $('#docConvertButton').on('click', function() {
       if (!data_type.includes("text")) {
         ddl += " NOT NULL";
       }
-      if (default_value.includes("AUTO_INCREMENT")) {
+      if (isAutoIncrement) {
         ddl += " AUTO_INCREMENT";
       }
-      if (default_value != null && default_value != "" && !default_value.includes("AUTO_INCREMENT")) {
-        ddl += " DEFAULT '" + default_value?.replaceAll("零值", "0").replaceAll("AUTO_INCREMENT", "0") + "'";
+      if (default_value != null) {
+        ddl += " DEFAULT '" + default_value + "'";
       }
       ddl += " COMMENT '" + description?.trim();
       if (other != null && other.trim != "") {
