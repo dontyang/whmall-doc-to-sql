@@ -42,7 +42,7 @@ $('#docConvertButton').on('click', function() {
     }).flat(Infinity);
     let ddl = "CREATE TABLE ";
     if (database != null && database != "") {
-      ddl += database + ".";
+      ddl += "`" + database + "`.";
     }
     ddl += "`" + table_name + "` (\n";
 
