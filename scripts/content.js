@@ -11,14 +11,21 @@ $(document).ready(function() {
       $('#sql_code').html("\n" + sql_code);
       Prism.highlightAll();
     }
+    let database = localStorage.getItem("database");
+    if (database != null && database != '') {
+      $('#database_input').val(database);
+    }
   }
+  $('.ui.dropdown').dropdown();
 });
 
 $('#docConvertButton').on('click', function() {
   try {
     let inputString = $('#docTextArea').val();
+    let database = $('#database_input').val();
     if (typeof(Storage) !== "undefined") {
       localStorage.setItem("docTextArea", inputString);
+      localStorage.setItem("database", database);
     }
     [table_str, data_str] = splitN(inputString, "\n字段\t类型\t索引\t默认\t描述\t其它\n", 2);
     [table_comment, table_name] = splitN(table_str, "：", 2);
@@ -33,7 +40,12 @@ $('#docConvertButton').on('click', function() {
         return [column.replaceAll("\n", " ")];
       }
     }).flat(Infinity);
-    let ddl = "CREATE TABLE `" + table_name + "` (\n";
+    let ddl = "CREATE TABLE ";
+    if (database != null && database != "") {
+      ddl += database + ".";
+    }
+    ddl += "`" + table_name + "` (\n";
+
     let index_data = [];
     eachSlice(table_data, 6, function(slice) {
       [column, data_type, index_type, default_value, description, other] = slice;

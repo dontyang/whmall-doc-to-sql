@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/semantic.min.css">
   <link rel="stylesheet" href="css/prism.css">
   <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/semantic.min.js"></script>
   <script src="scripts/prism.js"></script>
 </head>
 
@@ -28,6 +29,26 @@
                 转换
               </div>
             </div>
+            <div class="ui selection search dropdown">
+              <input type="hidden" id="database_input">
+              <i class="dropdown icon"></i>
+              <div class="default text">选择数据库</div>
+              <div class="menu">
+                <div class="item" data-value="whmall_chemical">chemical</div>
+                <div class="item" data-value="whmall_crm">crm</div>
+                <div class="item" data-value="whmall_data_center">data_center</div>
+                <div class="item" data-value="whmall_finance">finance</div>
+                <div class="item" data-value="whmall_oms">oms</div>
+                <div class="item" data-value="whmall_operation">operation</div>
+                <div class="item" data-value="whmall_precursor">precursor</div>
+                <div class="item" data-value="whmall_product">product</div>
+                <div class="item" data-value="whmall_supply_chain">supply_chain</div>
+                <div class="item" data-value="whmall_system">system</div>
+                <div class="item" data-value="whsales_rd">whsales_rd</div>
+              </div>
+            </div>
+          </div>
+          <div class="field">
             <textarea id="docTextArea" style="max-height: none;resize: none;overflow-y: hidden;height:400px;"></textarea>
           </div>
         </div>
